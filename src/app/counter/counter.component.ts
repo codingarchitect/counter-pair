@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Store } from '@ngrx/store';
+import { Store, Action } from '@ngrx/store';
+
+import { Wrapper } from '../store-enhancers';
 
 import * as AppStore from '../root.store';
 import * as EnhancedCounterStore from './enhanced-counter.store';
@@ -12,7 +14,7 @@ import * as CounterStore from './counter.store';
   styleUrls: ['./counter.component.css']
 })
 export class CounterComponent implements OnInit {
-  @Input() actionWrapper: (action: CounterStore.Actions) => EnhancedCounterStore.Actions;
+  @Input() actionWrapper: Wrapper
   @Input() stateSelector: (state: AppStore.AppState) => CounterStore.CounterState;
   private state: CounterStore.CounterState;
   constructor(private store: Store<AppStore.AppState>) {

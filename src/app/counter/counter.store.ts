@@ -23,7 +23,7 @@ export const counterInitialState: CounterState = {
   counterValue: 0
 };
 
-export function counterReducer(state: CounterState = counterInitialState, action: Actions): CounterState {
+export function counterReducer(state: CounterState = counterInitialState, action: Action): CounterState {
   switch (action.type) {
     case INCREMENT_ACTION: {
       return {
