@@ -7,5 +7,5 @@ export interface ReduxRegistryEntry<TState> {
   name?: string;
   create: ActionCreator;
   reduce: ActionReducer<TState>;
-  remove: () => void;
+  remove?: () => void;
 }

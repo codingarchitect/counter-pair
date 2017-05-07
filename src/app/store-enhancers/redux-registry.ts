@@ -96,7 +96,7 @@ export class ReduxRegistry<TState, TActionTypes> {
     return fn(serializedState);
   };
 
-  reducer(state: TState = this.initialState, action: Action) : TState {
+  reducer = function(state: TState = this.initialState, action: Action) : TState {
     let state1 = state;
 
     if (Array.isArray(action)) {
@@ -121,9 +121,9 @@ export class ReduxRegistry<TState, TActionTypes> {
     let nextState = reducer(state1, action);
 
     return nextState;
-  }
+  }.bind(this);
 
-  constructor(init) {
+  constructor(init?) {
     let creators = this.create = this.creators = {};
     let reducers = this.reduce = this.reducers = {};
     this

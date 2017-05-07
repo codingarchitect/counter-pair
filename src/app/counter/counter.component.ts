@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 
 import { Store, Action } from '@ngrx/store';
 
-import { Wrapper, EnhancedComponent } from '../store-enhancers';
+import { Wrapper, EnhancedComponent, ReduxRegistry } from '../store-enhancers';
 
 import * as AppStore from '../root.store';
 import * as EnhancedCounterStore from './enhanced-counter.store';
@@ -11,16 +11,27 @@ import * as CounterStore from './counter.store';
 @Component({
   selector: 'ca-counter',
   templateUrl: './counter.component.html',
-  styleUrls: ['./counter.component.css']
+  styleUrls: ['./counter.component.css'],
+  providers: [
+    CounterStore.COUNTER_STORE_REDUX_REGISTRY_PROVIDER
+  ]
 })
 export class CounterComponent extends EnhancedComponent<AppStore.AppState, CounterStore.CounterState> {
-  
+
+  constructor(
+    store: Store<AppStore.AppState>,
+    @Inject(CounterStore.REDUX_REGISTRY_TOKEN) private registry: ReduxRegistry<CounterStore.CounterState, CounterStore.ActionTypes>) {
+    super(store);
+  }
+
   increment() {
-    this.dispatch(new CounterStore.IncrementAction(null));
+    this.dispatch(this.registry.getActionCreator("increment")());
   }
 
   decrement() {
-    this.dispatch(new CounterStore.DecrementAction(null));
+    this.dispatch(this.registry.getActionCreator("decrement")());
+    // The following will cause compilation error
+    // this.dispatch(this.registry.getActionCreator("decrementBy2")());
   }
 
 }
