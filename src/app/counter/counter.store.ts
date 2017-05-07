@@ -1,6 +1,8 @@
 import { InjectionToken } from '@angular/core';
 import { Action, ActionReducer } from '@ngrx/store';
 
+import { createEnum } from '../utils';
+
 // IMPORT REDUXREGISTRY LIB
 import { ReduxRegistry } from '../store-enhancers';
 
@@ -12,16 +14,18 @@ export const counterInitialState: CounterState = {
   counterValue: 0
 };
 
-export interface ActionTypes {
-  increment,
-  decrement
-}
+export const ActionTypes = createEnum([
+  "increment",
+  "decrement"
+]);
+
+export type ActionTypes = keyof typeof ActionTypes;
 
 // REGISTER ACTIONCREATORS+REDUCER PAIRS
 let register = new ReduxRegistry<CounterState, ActionTypes>()
 register
   .add({
-    alias: 'increment', 
+    alias: ActionTypes.increment, 
     create: function() {
       return {
         type: 'INCREMENT'
@@ -34,7 +38,7 @@ register
     }
   })
   .add({
-    alias: 'decrement', 
+    alias: ActionTypes.decrement, 
     create: function() {
       return {
         type: 'DECREMENT'

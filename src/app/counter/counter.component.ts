@@ -25,11 +25,11 @@ export class CounterComponent extends EnhancedComponent<AppStore.AppState, Count
   }
 
   increment() {
-    this.dispatch(this.registry.getActionCreator("increment")());
+    this.dispatch(this.registry.getActionCreator(CounterStore.ActionTypes.increment)());
   }
 
   decrement() {
-    this.dispatch(this.registry.getActionCreator("decrement")());
+    this.dispatch(this.registry.getActionCreator(CounterStore.ActionTypes.decrement)());
     // The following will cause compilation error
     // this.dispatch(this.registry.getActionCreator("decrementBy2")());
   }

@@ -3,7 +3,7 @@ import { Action } from '@ngrx/store';
 import { ReduxRegistryEntry } from './redux-registry-entry';
 import { ActionCreator } from './action-creator';
 
-export class ReduxRegistry<TState, TActionTypes> {
+export class ReduxRegistry<TState, TActionTypes extends string> {
   private initialState : TState;
   private create;
   private creators;
@@ -84,11 +84,11 @@ export class ReduxRegistry<TState, TActionTypes> {
     return this.defs.map(def => def.name);
   };
 
-  get(name: keyof TActionTypes) : ReduxRegistryEntry<TState>  {
+  get(name: TActionTypes) : ReduxRegistryEntry<TState>  {
     return this.defs.find(def => def.name === name || def.alias === name);
   };
 
-  getActionCreator(name: keyof TActionTypes) : ActionCreator {
+  getActionCreator(name: TActionTypes) : ActionCreator {
     return this.defs.find(def => def.name === name || def.alias === name).create;
   }
 
