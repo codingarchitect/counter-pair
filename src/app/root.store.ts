@@ -1,10 +1,10 @@
 import { compose, combineReducers } from "@ngrx/store";
-import * as EnhancedCounterStore from './counter/enhanced-counter.store';
+import * as CounterPairStore from './counter-pair/counter-pair.store';
 
 export interface AppState {
-  root: EnhancedCounterStore.CounterPairState
+  root: CounterPairStore.CounterPairState
 }
 
 export const appInitialState: AppState = {
-  root: EnhancedCounterStore.counterPairInitialState
+  root: CounterPairStore.counterPairInitialState
 };

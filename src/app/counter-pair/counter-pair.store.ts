@@ -1,7 +1,7 @@
 import { Action, ActionReducer } from '@ngrx/store';
 
 import { buildUnwrapper, buildReducer } from '../store-enhancers';
-import * as CounterStore from './counter.store';
+import * as CounterStore from '../counter/counter.store';
 
 export interface CounterPairState {
     counter1: CounterStore.CounterState,
@@ -13,7 +13,7 @@ export const counterPairInitialState: CounterPairState = {
     counter2: CounterStore.counterInitialState  
 };
 
-export const enhancedCounterReducer = buildReducer([{
+export const counterPairReducer = buildReducer([{
   unwrapper: buildUnwrapper('Counter1'), // Unwraps Counter1 prefixed actions
   handler: (state, action) => ({
     ...state,
