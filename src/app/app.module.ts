@@ -9,7 +9,7 @@ import { enhancedCounterReducer } from './counter/enhanced-counter.store';
 import { AppState, appInitialState } from './root.store';
 import { AppComponent } from './app.component';
 import { CounterComponent } from './counter/counter.component';
-
+ 
 @NgModule({
   declarations: [
     AppComponent,

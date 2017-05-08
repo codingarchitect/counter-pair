@@ -6,3 +6,5 @@ export * from './enhanced-component';
 export * from './redux-registry';
 export * from './redux-registry-entry';
 export * from './action-creator';
+export * from './combine-reducers-enhanced';
+export * from './utils';

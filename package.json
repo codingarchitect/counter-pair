@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "watchLib": "tsc --watch --project tsconfig.lib.json",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
@@ -22,6 +23,7 @@
     "@angular/router": "^4.0.0",
     "@ngrx/store": "github:ngrx/store-builds",
     "core-js": "^2.4.1",
+    "reselect": "^3.0.0",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
   },

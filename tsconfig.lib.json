@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "declaration": true,
+    "outDir": "./node_modules/ngrx-modular-store",
+    "noEmitOnError": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
+    "isolatedModules": false,
+    "noLib": false,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "src/app/store-enhancers/lib/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

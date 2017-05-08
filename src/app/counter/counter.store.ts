@@ -1,10 +1,8 @@
 import { InjectionToken } from '@angular/core';
 import { Action, ActionReducer } from '@ngrx/store';
 
-import { createEnum } from '../utils';
-
-// IMPORT REDUXREGISTRY LIB
-import { ReduxRegistry } from '../store-enhancers';
+import { ActionCreator, ReduxRegistry, createEnum } from '../store-enhancers';
+import { Actions, Model,  } from 'ngrx-modular-store';
 
 export interface CounterState {
   counterValue: number;
@@ -59,3 +57,19 @@ export const COUNTER_STORE_REDUX_REGISTRY_PROVIDER = [
 
 export const counterReducer = register.reducer;
 export const getState = (state: CounterState) => state;
+
+Actions.counter = {
+  TYPES: ActionTypes,
+  increment: register.getActionCreator(ActionTypes.increment),
+  decrement: register.getActionCreator(ActionTypes.decrement)
+};
+
+declare module 'ngrx-modular-store' {
+  interface Actions {
+    counter: {
+      TYPES: typeof ActionTypes;
+      increment: ActionCreator;
+      decrement: ActionCreator;
+    };
+  }
+}
